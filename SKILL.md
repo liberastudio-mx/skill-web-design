@@ -1,6 +1,6 @@
 ---
 name: design-libera
-description: "Visual and aesthetic design direction for web and UI. LIBERA Studio synthesis of impeccable design laws + high-end-visual-design pattern catalog. Self-contained, no external dependencies. Covers brand and product registers, OKLCH color strategy, typography, motion choreography, layout, and AI slop prevention at two levels. Use alongside /ui-ux-libera for technical UX standards (accessibility, touch targets, performance)."
+description: "Visual and aesthetic design direction for web and UI. LIBERA Studio synthesis of impeccable design laws + high-end-visual-design pattern catalog. Self-contained for first-pass direction; optional deep-dive references if skill-web-design repository is available. Covers brand and product registers, OKLCH color strategy, typography, motion choreography, layout, hybrid surfaces, and AI slop prevention at two levels. Use alongside /ui-ux-libera for technical UX standards."
 ---
 
 # Design Libera — Visual Design Direction
@@ -8,7 +8,7 @@ description: "Visual and aesthetic design direction for web and UI. LIBERA Studi
 
 Aesthetic design intelligence for web and UI. Covers visual direction, color strategy, typography, motion, and layout for both brand and product surfaces.
 
-Use alongside `/ui-ux-libera` for technical UX (accessibility, touch targets, performance, launch completeness).
+Use alongside `/ui-ux-libera` for technical UX (accessibility, touch targets, performance, launch completeness). **When the two conflict, `/ui-ux-libera` wins** — see Conflict Resolution below.
 
 ---
 
@@ -20,7 +20,42 @@ Identify before doing anything else. Everything downstream depends on this.
 
 **Product** — design SERVES the product: app UIs, dashboards, settings, authenticated surfaces, tools. Goal: earn familiarity, disappear into the task.
 
-**If unclear:** use the dominant verb of the surface. A landing page sells → brand. A dashboard works → product. When in doubt, ask.
+**If unclear:** use the dominant verb of the surface. A landing page sells → brand. A dashboard works → product.
+
+**If asking is not appropriate**, classify by dominant user intent:
+- sell, persuade, announce, recruit, impress → Brand
+- create, manage, monitor, edit, configure, analyze → Product
+- both present → apply Hybrid Surfaces below; do not force one register on the whole page.
+
+---
+
+## Conflict Resolution with /ui-ux-libera
+
+When this skill conflicts with `/ui-ux-libera`, resolve in this order:
+
+1. **Accessibility** — always wins. Contrast, reduced motion, focus visibility, target sizes.
+2. **Task completion** — user must be able to complete the action without friction.
+3. **Performance and responsiveness** — no motion or layout that degrades interaction on mobile or slow networks.
+4. **Existing product design systems** — respect what's already built.
+5. **Design Libera direction** — applies only after all the above are satisfied.
+
+Examples where `/ui-ux-libera` wins: `py-24` section padding reduced on mobile for density; ambitious Brand motion blocked by `prefers-reduced-motion`; Drenched color blocked by contrast requirements; Button-in-Button modified for accessible target size and focus ring.
+
+---
+
+## Hybrid Surfaces
+
+Do not force a single register on a page that has mixed jobs.
+
+Assign register by zone:
+
+| Zone type | Register |
+|-----------|----------|
+| Hero, story, proof, pricing, about, campaign | Brand |
+| Editor, dashboard, form, settings, table, workflow, authenticated tool | Product |
+| Shared chrome (nav, footer) | Product behavior; may receive Brand styling if it does not harm task clarity |
+
+Brand may frame Product (wrapper, hero, onboarding), but Product interaction patterns must remain familiar and predictable. Never apply Brand expression to repetitive task surfaces.
 
 ---
 
@@ -60,7 +95,8 @@ Dark vs. light is never a default. Before choosing, write one sentence of physic
 ### Layout
 
 - Vary spacing for rhythm. Same padding everywhere is monotony.
-- Cards are the lazy answer. Use them only when they're the best affordance for the content. Nested cards are always wrong.
+- Cards are the lazy answer. Use them only when they're the best affordance for the content.
+- Nested cards are wrong when they create redundant grouping or card-inside-card clutter. Double-Bezel (see Pattern Catalog) is allowed when the outer layer acts as a material frame, not a second content container.
 - Don't wrap everything in a container. Most things don't need one.
 
 ### Motion
@@ -70,22 +106,23 @@ Dark vs. light is never a default. Before choosing, write one sentence of physic
   - `cubic-bezier(0.25, 1, 0.5, 1)` — quart out, smooth and refined
   - `cubic-bezier(0.16, 1, 0.3, 1)` — expo out, snappy and confident
 - Exit animations at ~70% of enter duration
+- All motion must respect `prefers-reduced-motion`. In reduced-motion mode, preserve state clarity with opacity, instant state changes, or shorter transitions — never remove state feedback entirely.
 
-### Absolute bans
+### Default-Refuse Patterns
 
-Match-and-refuse. If you're about to write any of these, rewrite the element with different structure.
+Match-and-refuse by default. Allow only if you can state: (1) why this pattern is structurally needed, (2) why a simpler alternative is worse, (3) how it avoids the cliché form.
 
-- **Side-stripe borders** — `border-left` or `border-right` >1px as a colored accent on cards, alerts, or list items. Never intentional. Rewrite with full borders, background tints, leading numbers/icons, or nothing.
-- **Gradient text** — `background-clip: text` + gradient background. Decorative, never meaningful. Use a single solid color; emphasis through weight or size.
-- **Glassmorphism as default** — blur and glass cards used decoratively. Rare and purposeful, or nothing.
-- **Hero-metric template** — big number, small label, supporting stats, gradient accent. SaaS cliché.
-- **Identical card grids** — same-sized cards with icon + heading + text, repeated endlessly.
-- **Modal as first thought** — exhaust inline / progressive / slide-over alternatives first. Modals are for high-stakes confirmation only.
+- **Side-stripe borders** — `border-left` or `border-right` >1px as a colored accent on cards, alerts, or list items. Default refuse; exceptions: changelog entries, code diff markers, severity alerts with documented rationale.
+- **Gradient text** — `background-clip: text` + gradient background. Default refuse; exceptions: deliberate campaign typography with a clear brand reason.
+- **Glassmorphism as default** — blur and glass cards used decoratively. Default refuse; see Ethereal Glass archetype for when glass is structurally justified.
+- **Hero-metric template** — big number, small label, supporting stats, gradient accent. SaaS cliché; default refuse.
+- **Identical card grids** — same-sized cards with icon + heading + text, repeated endlessly. Default refuse; exceptions: pricing comparison, directory listings, marketplace items with documented rationale.
+- **Modal as first thought** — exhaust inline / progressive / slide-over alternatives first. Modals for high-stakes confirmation, quick-create, command palette, or media preview only.
 
 ### Copy
 
 - Every word earns its place. No restated headings, no intros that repeat the title.
-- No em dashes. Use commas, colons, semicolons, periods, or parentheses.
+- Avoid em dashes as a default AI-copy rhythm. Use commas, colons, semicolons, or periods. Use em dashes only if the brand voice explicitly requires them.
 
 ---
 
@@ -108,19 +145,19 @@ If someone can look at the result and say "AI made that" without hesitation, it 
 Every project. Never skip.
 
 1. Write three concrete brand-voice words. Not "modern" or "elegant" — physical-object words: "warm and mechanical and opinionated", "calm and clinical and careful"
-2. List the three fonts you'd reach for by reflex. If any appear on the reject list, discard them — they are training-data defaults that create monoculture.
+2. List the three fonts you'd reach for by reflex. If any appear on the reflex-reject list, they are blocked as first-choice defaults — discard them.
 3. Browse a real catalog (Google Fonts, Pangram Pangram, Future Fonts, ABC Dinamo, Klim, Velvetyne) with the three words. Find the font for the brand as a *physical object*: a museum caption, a 1970s terminal manual, a fabric label, a concert poster, a receipt from a mid-century diner. Reject the first option that "looks designy."
 4. Cross-check: "elegant" is not necessarily serif. "Technical" is not necessarily sans. "Warm" is not Fraunces. If the final pick aligns with your original reflex, start over.
 
 ### Reflex-reject font list
 
-Training-data defaults. These create monoculture. Look further:
+Training-data defaults that create monoculture — blocked as first-choice defaults, not universally banned. Use one only if required by an existing brand system, or if used in a way that demonstrably avoids the common template fingerprint.
 
 Fraunces · Newsreader · Lora · Crimson · Crimson Pro · Crimson Text · Playfair Display · Cormorant · Cormorant Garamond · Syne · IBM Plex Mono · IBM Plex Sans · IBM Plex Serif · Space Mono · Space Grotesk · Inter · DM Sans · DM Serif Display · DM Serif Text · Outfit · Plus Jakarta Sans · Instrument Sans · Instrument Serif
 
 ### Reflex-reject aesthetic lanes
 
-Currently saturated aesthetic families. If a brief lands here without a register reason that *requires* it, it's the second-order reflex:
+Currently saturated aesthetic families. Default refuse unless the brief structurally requires it:
 
 - **Editorial-typographic** — display serif (often italic) + small mono labels + ruled separators + monochromatic restraint. By 2026, every Stripe-adjacent and Notion-adjacent brand has landed here. Fingerprint: three rule-separated columns, italic Newsreader/Fraunces headline, lowercase tracked metadata, no imagery.
 
@@ -154,15 +191,36 @@ Brand can afford things product cannot:
 
 ### Color
 
-Product defaults to **Restrained**. A single surface can earn Committed (a welcome screen, a data-led report), but Restrained is the floor.
+Product defaults to **Restrained**. Accent color for: primary actions, current selection, state indicators. Not decoration.
 
-Accent color for: primary actions, current selection, state indicators. Not decoration.
+### Density
+
+Choose one before designing:
+
+| Mode | Use when | Controls |
+|------|----------|----------|
+| **Compact** | Admin panels, data tables, power users, desktop-first tools | Tight spacing, smaller type, high information density |
+| **Comfortable** | SaaS dashboards, CRM, collaboration tools | Standard 4/8pt rhythm, readable data |
+| **Spacious** | Onboarding, mobile apps, consumer productivity | Generous padding, breathing room, lower cognitive load |
+
+Density governs spacing scale, type scale, table row height, card usage, and navigation weight. Do not mix modes within a surface unless zones have clearly different jobs.
 
 ### Layout
 
 - Predictable grids. Consistency IS an affordance — users navigate faster when structure is expected.
 - Familiar patterns are features: top bar, side nav, breadcrumbs, tabs, form layouts have earned trust. Don't reinvent for flavor.
 - Responsive behavior is structural (collapse sidebar, responsive table), not fluid typography.
+
+### Brand Moments in Product
+
+Product may use Brand-level expression only in isolated surfaces:
+- Onboarding and first-run welcome screens
+- Empty states (first use)
+- Upgrade / paywall surfaces
+- Success milestones and celebration moments
+- Report covers and public share pages
+
+Never apply Brand expression to repetitive task surfaces: data tables, settings, forms, nav, dashboards in daily use.
 
 ### Product bans
 
@@ -179,8 +237,8 @@ Before writing code, silently pick one archetype from each group. The combinatio
 
 ### A. Vibe Archetypes (pick 1)
 
-1. **Ethereal Glass** (SaaS / AI / Tech) — OLED black (`#050505`), radial mesh gradients with subtle glowing orbs, `backdrop-blur-2xl`, `border border-white/10` hairlines, wide geometric Grotesk
-2. **Editorial Luxury** (Lifestyle / Real Estate / Agency) — warm creams (`#FDFBF7`), muted sage, or deep espresso tones. Variable Serif for massive headings. CSS noise overlay (`opacity-[0.03]`) for physical paper feel.
+1. **Ethereal Glass** (SaaS / AI / Tech) — OLED black (`oklch(8% 0.01 260)`), radial mesh gradients with subtle glowing orbs, `backdrop-blur-2xl`, `border border-white/10` hairlines, wide geometric Grotesk. Glass is valid here because depth and translucency are structural to the aesthetic — not decorative. Requirements: blur only on fixed/sticky elements; contrast remains AA; a no-blur fallback exists for `@supports not (backdrop-filter: blur())` and reduced-motion environments.
+2. **Editorial Luxury** (Lifestyle / Real Estate / Agency) — warm creams (`oklch(97% 0.008 80)`), muted sage, or deep espresso tones. Variable Serif for massive headings. CSS noise overlay (`opacity-[0.03]`) for physical paper feel.
 3. **Soft Structuralism** (Consumer / Health / Portfolio) — silver-grey or white backgrounds. Massive bold Grotesk. Floating components with highly diffused ambient shadows.
 
 ### B. Layout Archetypes (pick 1)
@@ -193,7 +251,7 @@ Before writing code, silently pick one archetype from each group. The combinatio
 
 ### C. Double-Bezel Architecture
 
-Never place a premium card, image, or container flatly on the background. Use nested enclosures — like a glass plate in an aluminum tray:
+Use for premium cards, images, and feature containers. The outer layer is a material frame, not a second content container — this is not a nested card.
 
 - **Outer shell** — `bg-black/5 ring-1 ring-black/5 p-1.5 rounded-[2rem]`
 - **Inner core** — distinct background, `shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]`, radius `rounded-[calc(2rem-0.375rem)]` for mathematically concentric curves
@@ -203,9 +261,9 @@ Never place a premium card, image, or container flatly on the background. Use ne
 Trailing icons (arrows `↗`) must nest inside their own circular wrapper flush with the button's right inner padding — never sitting naked next to the text.
 
 ```html
-<button class="flex items-center gap-2 rounded-full px-6 py-3 bg-black text-white">
+<button class="flex items-center gap-2 rounded-full px-6 py-3 bg-neutral-950 text-neutral-50">
   Get started
-  <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">↗</span>
+  <span class="w-8 h-8 rounded-full bg-neutral-50/10 flex items-center justify-center">↗</span>
 </button>
 ```
 
@@ -222,6 +280,7 @@ Trailing icons (arrows `↗`) must nest inside their own circular wrapper flush 
 - Hamburger → X morph: `rotate-45` and `-rotate-45` with absolute positioning, not disappear/reappear
 - Staggered nav link reveal: `delay-100`, `delay-150`, `delay-200` per item
 - Button hover: `active:scale-[0.98]`, inner icon `group-hover:translate-x-1 group-hover:-translate-y-[1px] scale-105`
+- In reduced-motion mode: remove `blur` and translate transforms; keep opacity transitions ≤200ms.
 
 ### G. Performance Guardrails
 
@@ -232,52 +291,81 @@ Trailing icons (arrows `↗`) must nest inside their own circular wrapper flush 
 
 ---
 
+## LIBERA Fingerprint Test
+
+Before finalizing any Brand design, check whether it overuses this skill's own defaults:
+
+- double-bezel on every card and container
+- pill eyebrow tag above every heading
+- button-in-button arrow on every CTA
+- Asymmetrical Bento as the default layout without content reason
+- OLED black + glass + radial glow for any tech brief
+- `py-32`+ section padding without content that needs that space
+- scroll blur reveal (`blur-md → blur-0`) on every section entry
+
+**If 3 or more are present, remove or replace at least one.** Anti-slop includes avoiding this skill's own fingerprint when it becomes recognizable.
+
+---
+
 ## Execution Protocol
 
-1. **[REGISTER]** Brand or product? Identify from the surface's dominant verb.
-2. **[SCENE]** Write the physical scene sentence. It must force the dark/light answer.
-3. **[STRATEGY]** Choose color strategy explicitly: Restrained / Committed / Full palette / Drenched. Brand rarely defaults to Restrained.
-4. **[VARIANCE]** Brand only: pick one Vibe Archetype + one Layout Archetype from the Pattern Catalog.
-5. **[SLOP TEST]** Run both levels. If predictable at either level, return to step 3.
-6. **[BUILD]** Implement. Brand: Double-Bezel, Spatial Rhythm, Motion Choreography. Product: system fonts, predictable grids, Restrained color, familiar patterns.
-7. **[CHECKLIST]** Final pass before delivering.
+1. **[REGISTER]** Brand or product? Use the dominant verb. If unclear, use the fallback classification. If hybrid, split by zone.
+2. **[CONFLICT CHECK]** If used alongside `/ui-ux-libera`, confirm no conflicts on accessibility, performance, or responsiveness before proceeding.
+3. **[SCENE]** Write the physical scene sentence. It must force the dark/light answer.
+4. **[STRATEGY]** Choose color strategy explicitly: Restrained / Committed / Full palette / Drenched. Brand rarely defaults to Restrained.
+5. **[VARIANCE]** Brand only: pick one Vibe Archetype + one Layout Archetype from the Pattern Catalog.
+6. **[SLOP TEST]** Run both levels. If predictable at either level, return to step 4.
+7. **[BUILD]** Implement. Brand: Double-Bezel, Spatial Rhythm, Motion Choreography. Product: system fonts, predictable grids, Restrained color, familiar patterns, density mode.
+8. **[FINGERPRINT]** Run LIBERA Fingerprint Test. If 3+ defaults present, remove at least one.
+9. **[CHECKLIST]** Final pass before delivering.
 
 ---
 
 ## Pre-Output Checklist
 
 **Both registers**
-- [ ] Register identified and confirmed (brand / product)
+- [ ] Register identified and confirmed (brand / product / hybrid zones)
 - [ ] Physical scene sentence written — it forced the dark/light answer
 - [ ] Color strategy chosen explicitly — not defaulted
 - [ ] First-order slop check: palette not predictable from category alone
 - [ ] Second-order slop check: aesthetic lane not predictable from category + anti-references
-- [ ] No absolute bans: side-stripe borders, gradient text, glassmorphism-as-default, hero-metric, identical card grids
+- [ ] No default-refuse patterns used without documented structural rationale
 - [ ] All transitions use custom cubic-bezier — no `linear` or default `ease`
 - [ ] `backdrop-blur` only on fixed/sticky elements
 - [ ] Full-height sections: `min-h-[100dvh]`, not `h-screen`
 - [ ] Scroll animations use IntersectionObserver, not scroll event listener
-- [ ] Copy: no em dashes, no restated headings
+- [ ] Motion respects `prefers-reduced-motion`
+- [ ] Copy: no em dashes unless brand voice requires them, no restated headings
 
 **Brand only**
-- [ ] Font procedure followed — no fonts from reflex-reject list
+- [ ] Font procedure followed — no fonts from reflex-reject list as first choice
 - [ ] No aesthetic lanes from reflex-reject lanes
-- [ ] Double-Bezel on all major cards, containers, and feature grids
+- [ ] Double-Bezel on major cards/containers (outer = frame, not second content container)
 - [ ] Section padding minimum `py-24`
 - [ ] Motion uses `cubic-bezier(0.32, 0.72, 0, 1)` — no `ease-in-out`
+- [ ] LIBERA Fingerprint Test passed — fewer than 3 defaults stacked
 - [ ] Overall impression reads as designed with intent, not assembled from templates
 
 **Product only**
+- [ ] Density mode chosen (Compact / Comfortable / Spacious) — consistent throughout
 - [ ] Component vocabulary consistent across all screens
 - [ ] No decorative motion — all motion conveys state
 - [ ] Standard navigation patterns used, not reinvented
 - [ ] Accent color only on primary actions, selection, state indicators
+- [ ] Brand Moments limited to appropriate surfaces (onboarding, empty state, success)
+
+**Hybrid surfaces**
+- [ ] Zones explicitly identified (Brand zone / Product zone)
+- [ ] Product zones use familiar patterns regardless of Brand framing
+- [ ] No Brand expression on repetitive task surfaces
 
 ---
 
-## Knowledge Base
+## External References
 
-For deep-dives, reference `reference/` in [skill-web-design](https://github.com/sayitlouderdev/skill-web-design):
+This skill is self-contained for first-pass visual direction. The `reference/` files in [skill-web-design](https://github.com/sayitlouderdev/skill-web-design) are optional deep-dives.
+
+**If the repository is not available:** do not claim to have read these files. Continue with this document only.
 
 | Need | File |
 |------|------|
