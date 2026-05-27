@@ -1,7 +1,7 @@
 # NOTICE
 
 skill-web-design — Web Design Knowledge Base
-Copyright 2026 LIBERA Studio (sayitlouderdev)
+Copyright 2026 LIBERA Studio (https://github.com/liberastudio-mx/)
 
 This repository is licensed under the Apache License, Version 2.0.
 See LICENSE for the full license text.
@@ -39,7 +39,7 @@ The `impeccable` skill (and therefore this repository) is based in part on Anthr
 - **Source:** https://github.com/yuvalsuede/ai-component-generator (ui-ux-pro-max v2.5.0)
 - **Author:** Next Level Builder
 - **License:** MIT
-- **Note:** This repository does not include ui-ux-pro-max content. The related repository [skill-ui-ux-Libera](https://github.com/sayitlouderdev/skill-ui-ux-Libera) contains a fork of ui-ux-pro-max data (CSV databases and search scripts) under the MIT license.
+- **Note:** This repository does not include ui-ux-pro-max content. The related repository [skill-ui-ux-Libera](https://github.com/liberastudio-mx/skill-ui-ux-Libera) contains a fork of ui-ux-pro-max data (CSV databases and search scripts) under the MIT license.
 
 ---
 
