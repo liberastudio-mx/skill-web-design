@@ -26,7 +26,6 @@ The reference documents in `reference/` are substantially the work of the `impec
 ```
 skill-web-design/
 ├── reference/          ← Design knowledge docs (source: impeccable, Apache 2.0)
-├── skills/             ← Original SKILL.md baselines from each design tool
 ├── LICENSE             ← Apache 2.0
 ├── NOTICE.md           ← Third-party attribution
 └── CONTRIBUTING.md     ← How to contribute
