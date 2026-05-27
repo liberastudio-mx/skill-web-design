@@ -363,7 +363,7 @@ Before finalizing any Brand design, check whether it overuses this skill's own d
 
 ## External References
 
-This skill is self-contained for first-pass visual direction. The `reference/` files in [skill-web-design](https://github.com/sayitlouderdev/skill-web-design) are optional deep-dives.
+This skill is self-contained for first-pass visual direction. The `reference/` files in [skill-web-design](https://github.com/liberastudio-mx/skill-web-design) are optional deep-dives.
 
 **If the repository is not available:** do not claim to have read these files. Continue with this document only.
 
@@ -388,4 +388,4 @@ This skill is self-contained for first-pass visual direction. The `reference/` f
 
 *LIBERA Studio synthesis — maggio 2026*
 *Fonti: impeccable (Apache 2.0) + high-end-visual-design*
-*Repository: https://github.com/sayitlouderdev/skill-web-design*
+*Repository: https://github.com/liberastudio-mx/skill-web-design*
