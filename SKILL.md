@@ -1,14 +1,26 @@
 ---
 name: design-libera
-description: "Visual and aesthetic design direction for web and UI. LIBERA Studio synthesis of impeccable design laws + high-end-visual-design pattern catalog. Self-contained for first-pass direction; optional deep-dive references if skill-web-design repository is available. Covers brand and product registers, OKLCH color strategy, typography, motion choreography, layout, hybrid surfaces, and AI slop prevention at two levels. Use alongside /ui-ux-libera for technical UX standards."
+description: "Visual and aesthetic design direction for web and UI. LIBERA Studio synthesis of impeccable design laws + high-end-visual-design pattern catalog. Self-contained for first-pass direction; optional deep-dive references if skill-web-design repository is available. Covers brand and product registers, OKLCH color strategy, typography, motion choreography, layout, and AI slop prevention at two levels. Modes: Build (default), Audit, Redesign, Study."
 ---
 
 # Design Libera — Visual Design Direction
-*LIBERA Studio synthesis — maggio 2026*
 
 Aesthetic design intelligence for web and UI. Covers visual direction, color strategy, typography, motion, and layout for both brand and product surfaces.
 
 Use alongside `/ui-ux-libera` for technical UX (accessibility, touch targets, performance, launch completeness). **When the two conflict, `/ui-ux-libera` wins** — see Conflict Resolution below.
+
+---
+
+## Mode Selection
+
+Identify your mode before proceeding. Default is **Build**.
+
+| Mode | Trigger phrases | What it does |
+| ---- | --------------- | ------------ |
+| **Build** | (default) | Creates new UI with selected register, theme, and macrostructure. Runs all gate checks. |
+| **Audit** | "audit questo design", "valuta questo UI", "cosa non va", "score questo" | Scores existing code or screenshot against design patterns. No edits made. |
+| **Redesign** | "ridisegna", "cambia stile", "stessa struttura diverso look", "preserva il contenuto" | Preserves copy and information architecture. Rebuilds visual fingerprint from scratch. |
+| **Study** | "analizza questo sito", "estrai il DNA", "voglio replicare questo stile", "cosa usa questo design" | Extracts design DNA from a URL or screenshot. Produces a portable design brief. |
 
 ---
 
@@ -23,6 +35,7 @@ Identify before doing anything else. Everything downstream depends on this.
 **If unclear:** use the dominant verb of the surface. A landing page sells → brand. A dashboard works → product.
 
 **If asking is not appropriate**, classify by dominant user intent:
+
 - sell, persuade, announce, recruit, impress → Brand
 - create, manage, monitor, edit, configure, analyze → Product
 - both present → apply Hybrid Surfaces below; do not force one register on the whole page.
@@ -118,6 +131,8 @@ Match-and-refuse by default. Allow only if you can state: (1) why this pattern i
 - **Hero-metric template** — big number, small label, supporting stats, gradient accent. SaaS cliché; default refuse.
 - **Identical card grids** — same-sized cards with icon + heading + text, repeated endlessly. Default refuse; exceptions: pricing comparison, directory listings, marketplace items with documented rationale.
 - **Modal as first thought** — exhaust inline / progressive / slide-over alternatives first. Modals for high-stakes confirmation, quick-create, command palette, or media preview only.
+- **Staggered card offsets** — `md:mt-N` on alternating grid cards to simulate a cascade or bento offset. Default refuse; the grid collapses to a single column on mobile and the offsets become misaligned rows with no visual logic. Use the Z-Axis Cascade archetype if vertical offset is structurally required.
+- **CSS-class gradient text** — custom utility classes or keyframe animations applying `background-clip: text` with a gradient background. Same rule as inline gradient text. Default refuse.
 
 ### Copy
 
@@ -164,6 +179,7 @@ Currently saturated aesthetic families. Default refuse unless the brief structur
 ### Brand permissions
 
 Brand can afford things product cannot:
+
 - Ambitious first-load motion and scroll-triggered transitions
 - Single-purpose viewports — one dominant idea per fold, long scroll, deliberate pacing
 - Typographic risk: enormous display type, unexpected italic cuts, mixed cases, a single oversize word as hero
@@ -214,6 +230,7 @@ Density governs spacing scale, type scale, table row height, card usage, and nav
 ### Brand Moments in Product
 
 Product may use Brand-level expression only in isolated surfaces:
+
 - Onboarding and first-run welcome screens
 - Empty states (first use)
 - Upgrade / paywall surfaces
@@ -237,9 +254,49 @@ Before writing code, silently pick one archetype from each group. The combinatio
 
 ### A. Vibe Archetypes (pick 1)
 
-1. **Ethereal Glass** (SaaS / AI / Tech) — OLED black (`oklch(8% 0.01 260)`), radial mesh gradients with subtle glowing orbs, `backdrop-blur-2xl`, `border border-white/10` hairlines, wide geometric Grotesk. Glass is valid here because depth and translucency are structural to the aesthetic — not decorative. Requirements: blur only on fixed/sticky elements; contrast remains AA; a no-blur fallback exists for `@supports not (backdrop-filter: blur())` and reduced-motion environments.
-2. **Editorial Luxury** (Lifestyle / Real Estate / Agency) — warm creams (`oklch(97% 0.008 80)`), muted sage, or deep espresso tones. Variable Serif for massive headings. CSS noise overlay (`opacity-[0.03]`) for physical paper feel.
-3. **Soft Structuralism** (Consumer / Health / Portfolio) — silver-grey or white backgrounds. Massive bold Grotesk. Floating components with highly diffused ambient shadows.
+Each archetype includes default scene, color strategy, font direction, and when to refuse it.
+
+1. **Ethereal Glass** (SaaS / AI / Tech)
+   OLED black (`oklch(8% 0.01 260)`), radial mesh gradients with subtle glowing orbs, `backdrop-blur-2xl`, `border border-white/10` hairlines, wide geometric Grotesk. Glass is valid here because depth and translucency are structural — not decorative. Requirements: blur only on fixed/sticky elements; contrast remains AA; no-blur fallback for `@supports not (backdrop-filter: blur())` and reduced-motion environments.
+   *Refuse when:* the brief isn't AI/tech/cloud-native — this is the most overused SaaS aesthetic by 2026.
+
+2. **Editorial Luxury** (Lifestyle / Real Estate / Agency)
+   Warm creams (`oklch(97% 0.008 80)`), muted sage, or deep espresso tones. Variable Serif for massive headings. CSS noise overlay (`opacity-[0.03]`) for physical paper feel.
+   *Refuse when:* the brand is digital-first with no physical analog.
+
+3. **Soft Structuralism** (Consumer / Health / Portfolio)
+   Silver-grey or white backgrounds. Massive bold Grotesk. Floating components with highly diffused ambient shadows.
+   *Refuse when:* the brand needs strong color identity or dark mode.
+
+4. **Terminal Noir** (Dev tools / CLI / Security / Infrastructure)
+   Near-black canvas (`oklch(10% 0.008 200)`), monospace primary font, phosphor green / amber / cyan accent at max 10%, dense information layout, no decorative elements. The aesthetic is the tool — it should feel like something that works, not something that looks good.
+   *Refuse when:* the audience is non-technical or the brief explicitly asks for approachability.
+
+5. **Warm Craft** (Food / Artisan / Indie / Sustainable / Local)
+   Earthy ochres, terracotta, forest green. Irregular grid, slight imperfection tolerated. Handwritten or humanist serif. Grain texture overlay. The page feels made by a person, not assembled by a system.
+   *Refuse when:* the brand needs to signal scale, precision, or enterprise credibility.
+
+6. **Clinical Precision** (Health / Medical / SaaS data / Research / Pharma)
+   Pure white or near-white background, extreme whitespace, geometric sans at regular weight, one blue or teal accent at max 8%, precise 8pt grid, no decorative elements. Every element earns its place by conveying information.
+   *Refuse when:* the brief calls for warmth, personality, or emotional engagement.
+
+7. **Vivid Commerce** (E-commerce / Retail / Consumer brand / FMCG)
+   High-contrast, product-forward. Strong hero with product photography. Bold color block headers. Price and CTA always visible. Conversion architecture over aesthetic expression. Color Committed or Drenched strategy.
+   *Refuse when:* the brand is premium/luxury — switch to Editorial Luxury instead.
+
+8. **Motion Studio** (Creative agency / Portfolio / Film / Music / Event)
+   Dark canvas, oversized display type, scroll-driven animation is structural (not decorative), cinematic section transitions. The motion IS the product — it demonstrates the studio's craft. Frame every section as a scene.
+   *Refuse when:* the client needs to communicate information quickly or the audience is impatient.
+
+9. **Analog Revival** (Music / Print / Publishing / Zine / Indie label)
+   Grain, muted desaturated palette, editorial grid from print tradition (columns, rules, folios). Mixes grotesque and slab. Physical media references: LP sleeve, magazine spread, concert poster, receipt. Intentional rawness.
+   *Refuse when:* the brand is digital-native with no physical heritage or the audience skews corporate.
+
+10. **Civic Structure** (NGO / Government / Education / Documentation / Open source)
+    High accessibility, predictable hierarchy, generous whitespace, system sans, conservative color (one civic blue or green), no decorative motion. Clarity over expression — the content is the point.
+    *Refuse when:* the brief requires personality or differentiation over trustworthiness.
+
+---
 
 ### B. Layout Archetypes (pick 1)
 
@@ -248,6 +305,8 @@ Before writing code, silently pick one archetype from each group. The combinatio
 3. **Editorial Split** — massive typography on left (`w-1/2`), interactive content on right. Mobile: full-width vertical stack (`w-full`), typography block on top.
 
 **Universal mobile override:** Any asymmetric layout above `md:` MUST collapse to `w-full`, `px-4`, `py-8` below 768px. Never `h-screen` — always `min-h-[100dvh]` (iOS Safari viewport jump fix).
+
+---
 
 ### C. Double-Bezel Architecture
 
@@ -269,8 +328,8 @@ Trailing icons (arrows `↗`) must nest inside their own circular wrapper flush 
 
 ### E. Spatial Rhythm
 
-- Section padding minimum `py-24`, target `py-32` to `py-40` — let the design breathe heavily
-- Eyebrow tags before major H1/H2: `rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium`
+- Section padding varies — minimum `py-20`, range `py-20` to `py-40`. Use at least 3 different values across a landing page. Same `py-N` on every section is monotony, not rhythm.
+- Eyebrow tags before major H1/H2: `rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium`. **Maximum 3 per page.** Reserve for hero, primary feature section, and social proof. An eyebrow above every heading destroys the emphasis of each one.
 - Double standard padding everywhere — whitespace is a design material
 
 ### F. Motion Choreography
@@ -307,63 +366,186 @@ Before finalizing any Brand design, check whether it overuses this skill's own d
 
 ---
 
+## Study Mode
+
+**Trigger:** "analizza questo sito", "estrai il DNA di design", "voglio replicare questo stile", "cosa usa questo design", "study this"
+
+Analyze an admired design (URL or screenshot) and extract a portable design brief. Output is a structured summary ready to pass to the next Build session as a reference.
+
+### Study Protocol
+
+1. **Observe the physical scene** — who uses this, where, when, in what mood. Write one sentence.
+2. **Identify the register** — Brand / Product / Hybrid? Which zones?
+3. **Name the vibe archetype** — which of the A archetypes does this most closely match, or is it a hybrid/unnamed direction?
+4. **Identify the color strategy** — Restrained / Committed / Full palette / Drenched? Dominant hue in OKLCH terms if determinable.
+5. **Identify the layout archetype** — Asymmetrical Bento / Z-Axis Cascade / Editorial Split / other (describe)?
+6. **Extract typography** — heading font, body font, scale impression (tight/loose/dramatic), weight contrast used.
+7. **Read the motion register** — fast/slow, which easing family, scroll-driven or triggered, micro-interactions present?
+8. **Spot default-refuse patterns** — list any from the refuse list that appear. Note whether they're used structurally or decoratively.
+9. **Run slop tests** — is this first-order predictable? Second-order? What makes it escape prediction?
+10. **List 3 elements to replicate** — specific and implementable: a spacing decision, a color relationship, a motion choice.
+11. **List 2 elements to avoid** — things specific to this brand/budget/context that shouldn't be copied verbatim.
+
+### Study Output Format
+
+```markdown
+## Design DNA — [site name or URL]
+
+**Scene:** [one sentence]
+**Register:** [Brand / Product / Hybrid]
+**Vibe Archetype:** [name or closest match]
+**Layout Archetype:** [name or closest match]
+**Color Strategy:** [Restrained / Committed / Full palette / Drenched]
+**Dominant palette:** [approximate OKLCH description]
+**Heading font:** [name + weight + style]
+**Body font:** [name + size / line-height impression]
+**Motion register:** [duration family, easing impression, key animations]
+
+**Refuse patterns present:** [list or "none"]
+**Slop test:** [first-order escape / second-order escape / fails at level N]
+
+**Replicate:**
+1. [specific element]
+2. [specific element]
+3. [specific element]
+
+**Avoid:**
+1. [specific element]
+2. [specific element]
+```
+
+---
+
+## Audit Mode
+
+**Trigger:** "audit questo design", "valuta questo UI", "cosa non va", "score questo", "review this code design-wise"
+
+Score existing code or a screenshot against design patterns. **No edits made in Audit mode** — output is analysis only. For UX/accessibility audit use `/ui-ux-libera` instead; this mode covers visual design only.
+
+### Audit Protocol
+
+1. **Identify register** — Brand / Product / Hybrid? Does the implementation match the content's actual register?
+2. **Color audit** — strategy used (stated or implied)? OKLCH or raw hex? Pure black/white present? Neutral tinting?
+3. **Typography audit** — reflex-reject fonts present? Scale ratio? Line length controlled? Heading/body contrast adequate?
+4. **Layout audit** — archetype identifiable? Cards overused? Spacing monotonous (same `py-N` everywhere)? Container overuse?
+5. **Motion audit** — CSS layout properties animated? Custom cubic-bezier or default `ease/linear`? `prefers-reduced-motion` handled?
+6. **Default-refuse check** — which patterns from the refuse list are present? Structural justification documented?
+7. **Slop test** — first-order predictable? Second-order? What level fails?
+8. **LIBERA Fingerprint Test** — count stacked defaults.
+9. **Overall verdict** — one sentence.
+
+### Audit Output Format
+
+```markdown
+## Design Audit — [component / page name]
+
+**Register identified:** [Brand / Product / Hybrid] — [correct match or mismatch]
+
+**Color** [PASS / WARN / FAIL]
+[finding]
+
+**Typography** [PASS / WARN / FAIL]
+[finding]
+
+**Layout** [PASS / WARN / FAIL]
+[finding]
+
+**Motion** [PASS / WARN / FAIL]
+[finding]
+
+**Default-refuse violations:** [list or "none"]
+
+**Slop test:**
+- First-order: [PASS / FAIL — reason]
+- Second-order: [PASS / FAIL — reason]
+
+**LIBERA Fingerprint:** [N/7 defaults stacked — list them]
+
+**Verdict:** [one sentence]
+
+**Top 3 fixes (priority order):**
+1. [fix]
+2. [fix]
+3. [fix]
+```
+
+---
+
 ## Execution Protocol
 
-1. **[REGISTER]** Brand or product? Use the dominant verb. If unclear, use the fallback classification. If hybrid, split by zone.
-2. **[CONFLICT CHECK]** If used alongside `/ui-ux-libera`, confirm no conflicts on accessibility, performance, or responsiveness before proceeding.
-3. **[SCENE]** Write the physical scene sentence. It must force the dark/light answer.
-4. **[STRATEGY]** Choose color strategy explicitly: Restrained / Committed / Full palette / Drenched. Brand rarely defaults to Restrained.
-5. **[VARIANCE]** Brand only: pick one Vibe Archetype + one Layout Archetype from the Pattern Catalog.
-6. **[SLOP TEST]** Run both levels. If predictable at either level, return to step 4.
-7. **[BUILD]** Implement. Brand: Double-Bezel, Spatial Rhythm, Motion Choreography. Product: system fonts, predictable grids, Restrained color, familiar patterns, density mode.
-8. **[FINGERPRINT]** Run LIBERA Fingerprint Test. If 3+ defaults present, remove at least one.
-9. **[CHECKLIST]** Final pass before delivering.
+1. **[MODE]** Build / Audit / Redesign / Study? If Audit → jump to Audit Mode. If Study → jump to Study Mode. If Redesign → note existing copy/IA before step 2, then proceed.
+2. **[REGISTER]** Brand or product? Use the dominant verb. If unclear, use the fallback classification. If hybrid, split by zone.
+3. **[CONFLICT CHECK]** If used alongside `/ui-ux-libera`, confirm no conflicts on accessibility, performance, or responsiveness before proceeding.
+4. **[SCENE]** Write the physical scene sentence. It must force the dark/light answer.
+5. **[STRATEGY]** Choose color strategy explicitly: Restrained / Committed / Full palette / Drenched. Brand rarely defaults to Restrained.
+6. **[VARIANCE]** Brand only: pick one Vibe Archetype + one Layout Archetype from the Pattern Catalog.
+7. **[FINGERPRINT — pre-build]** Count how many LIBERA defaults the planned design will use. If 3+ are stacked in the plan, redesign the approach before writing any code — return to step 6.
+8. **[SLOP TEST]** Run both levels. If predictable at either level, return to step 5.
+9. **[COMPOSE]** Brand landing pages only: map every section before writing code. For each section list: name | layout type (card grid / split / bento / list / image+text / full-bleed) | eyebrow? (yes/no). Verify: (a) no two adjacent sections use identical layout; (b) eyebrow count ≤ 3 total; (c) section padding uses at least 3 different `py-N` values across the page. Advance to BUILD only when this map passes.
+10. **[BUILD]** Implement. Brand: Double-Bezel, Spatial Rhythm, Motion Choreography. Product: system fonts, predictable grids, Restrained color, familiar patterns, density mode.
+11. **[DOCUMENT]** Add a macrostructure comment at the top of the root component documenting the design decisions made.
+
+    ```tsx
+    {/* Design: [Register] | Vibe: [Archetype] | Layout: [Archetype] | Color: [Strategy] */}
+    ```
+
+    CSS-only projects: `/* Design: [Register] | Vibe: [Archetype] | Layout: [Archetype] | Color: [Strategy] */`
+12. **[CHECKLIST]** Final pass before delivering. All applicable gates below must pass.
 
 ---
 
 ## Pre-Output Checklist
 
+Gate IDs allow citing specific failures in reviews (e.g. "failed G-04 and B-02").
+
 **Both registers**
-- [ ] Register identified and confirmed (brand / product / hybrid zones)
-- [ ] Physical scene sentence written — it forced the dark/light answer
-- [ ] Color strategy chosen explicitly — not defaulted
-- [ ] First-order slop check: palette not predictable from category alone
-- [ ] Second-order slop check: aesthetic lane not predictable from category + anti-references
-- [ ] No default-refuse patterns used without documented structural rationale
-- [ ] All transitions use custom cubic-bezier — no `linear` or default `ease`
-- [ ] `backdrop-blur` only on fixed/sticky elements
-- [ ] Full-height sections: `min-h-[100dvh]`, not `h-screen`
-- [ ] Scroll animations use IntersectionObserver, not scroll event listener
-- [ ] Motion respects `prefers-reduced-motion`
-- [ ] Copy: no em dashes unless brand voice requires them, no restated headings
+
+- `[G-01]` Register identified and confirmed (brand / product / hybrid zones)
+- `[G-02]` Physical scene sentence written — it forced the dark/light answer
+- `[G-03]` Color strategy chosen explicitly — not defaulted
+- `[G-04]` First-order slop check: palette not predictable from category alone
+- `[G-05]` Second-order slop check: aesthetic lane not predictable from category + anti-references
+- `[G-06]` No default-refuse patterns used without documented structural rationale
+- `[G-07]` All transitions use custom cubic-bezier — no `linear` or default `ease`
+- `[G-08]` `backdrop-blur` only on fixed/sticky elements
+- `[G-09]` Full-height sections: `min-h-[100dvh]`, not `h-screen`
+- `[G-10]` Scroll animations use IntersectionObserver, not scroll event listener
+- `[G-11]` Motion respects `prefers-reduced-motion`
+- `[G-12]` Copy: no em dashes unless brand voice requires them, no restated headings
+- `[G-13]` Macrostructure comment added to root component
 
 **Brand only**
-- [ ] Font procedure followed — no fonts from reflex-reject list as first choice
-- [ ] No aesthetic lanes from reflex-reject lanes
-- [ ] Double-Bezel on major cards/containers (outer = frame, not second content container)
-- [ ] Section padding minimum `py-24`
-- [ ] Motion uses `cubic-bezier(0.32, 0.72, 0, 1)` — no `ease-in-out`
-- [ ] LIBERA Fingerprint Test passed — fewer than 3 defaults stacked
-- [ ] Overall impression reads as designed with intent, not assembled from templates
+
+- `[B-01]` Font procedure followed — no fonts from reflex-reject list as first choice
+- `[B-02]` No aesthetic lanes from reflex-reject lanes
+- `[B-03]` Double-Bezel on major cards/containers (outer = frame, not second content container)
+- `[B-04]` Section padding minimum `py-24`
+- `[B-05]` Motion uses `cubic-bezier(0.32, 0.72, 0, 1)` — no `ease-in-out`
+- `[B-06]` LIBERA Fingerprint Test passed — fewer than 3 defaults stacked
+- `[B-07]` Overall impression reads as designed with intent, not assembled from templates
+- `[B-08]` Eyebrow tags ≤ 3 total across the page
+- `[B-09]` No two adjacent sections use identical layout type
 
 **Product only**
-- [ ] Density mode chosen (Compact / Comfortable / Spacious) — consistent throughout
-- [ ] Component vocabulary consistent across all screens
-- [ ] No decorative motion — all motion conveys state
-- [ ] Standard navigation patterns used, not reinvented
-- [ ] Accent color only on primary actions, selection, state indicators
-- [ ] Brand Moments limited to appropriate surfaces (onboarding, empty state, success)
+
+- `[P-01]` Density mode chosen (Compact / Comfortable / Spacious) — consistent throughout
+- `[P-02]` Component vocabulary consistent across all screens
+- `[P-03]` No decorative motion — all motion conveys state
+- `[P-04]` Standard navigation patterns used, not reinvented
+- `[P-05]` Accent color only on primary actions, selection, state indicators
+- `[P-06]` Brand Moments limited to appropriate surfaces (onboarding, empty state, success)
 
 **Hybrid surfaces**
-- [ ] Zones explicitly identified (Brand zone / Product zone)
-- [ ] Product zones use familiar patterns regardless of Brand framing
-- [ ] No Brand expression on repetitive task surfaces
+
+- `[H-01]` Zones explicitly identified (Brand zone / Product zone)
+- `[H-02]` Product zones use familiar patterns regardless of Brand framing
+- `[H-03]` No Brand expression on repetitive task surfaces
 
 ---
 
 ## External References
 
-This skill is self-contained for first-pass visual direction. The `reference/` files in [skill-web-design](https://github.com/liberastudio-mx/skill-web-design) are optional deep-dives.
+This skill is self-contained for first-pass visual direction. The `reference/` files in [skill-web-design](https://github.com/sayitlouderdev/skill-web-design) are optional deep-dives.
 
 **If the repository is not available:** do not claim to have read these files. Continue with this document only.
 
@@ -388,4 +570,4 @@ This skill is self-contained for first-pass visual direction. The `reference/` f
 
 *LIBERA Studio synthesis — maggio 2026*
 *Fonti: impeccable (Apache 2.0) + high-end-visual-design*
-*Repository: https://github.com/liberastudio-mx/skill-web-design*
+*Repository: https://github.com/sayitlouderdev/skill-web-design*

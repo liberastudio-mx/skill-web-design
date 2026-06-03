@@ -1,6 +1,6 @@
 # skill-web-design
 
-> A Claude Code skill for creating polished web and UI designs from structured website plans.
+> A Claude Code skill for creating polished web and UI designs that refuse to look AI-generated.
 
 **Maintained by [LIBERA Studio](https://github.com/liberastudio-mx/) · License: Apache 2.0**
 
@@ -8,13 +8,24 @@
 
 ## What this is
 
-`skill-web-design` is a Claude Code skill focused on web and UI design.
+`skill-web-design` is a Claude Code skill for visual design direction on web and UI projects.
 
-It helps Claude Code improve the visual layer of a website after the structure, content hierarchy, and UX flow have already been defined. The skill provides design principles, reference material, and practical guidance for layout, typography, color, spacing, motion, interaction, responsiveness, accessibility, and final UI polish.
+It covers brand and product registers, OKLCH color strategy, typography, motion choreography, layout archetypes, and a two-level AI slop prevention system. The skill provides design principles, reference material, and practical guidance that produces structurally distinct sites rather than template variations.
 
 This repository was built by analyzing existing Claude Code design skills, extracting useful design knowledge, and synthesizing it into a focused, self-contained skill for LIBERA Studio workflows.
 
 The reference documents in `reference/` are substantially derived from the `impeccable` project, licensed under Apache 2.0. See [NOTICE.md](NOTICE.md) for full attribution.
+
+---
+
+## What's new in v1.1.0
+
+- **Four operating modes** — Build (default), Audit, Redesign, Study. Each has its own protocol and output format.
+- **Study mode** — analyze any admired design and extract a portable Design DNA brief (scene, register, vibe archetype, color strategy, typography, motion, elements to replicate).
+- **Audit mode** — score existing code or screenshots against design patterns without making edits. Structured output with PASS/WARN/FAIL per category.
+- **10 Vibe Archetypes** (expanded from 3) — Ethereal Glass, Editorial Luxury, Soft Structuralism, Terminal Noir, Warm Craft, Clinical Precision, Vivid Commerce, Motion Studio, Analog Revival, Civic Structure. Each includes default scene, color strategy, font direction, and when to refuse it.
+- **Gate IDs** — pre-output checklist items now have IDs (`[G-01]`–`[G-13]`, `[B-01]`–`[B-09]`, `[P-01]`–`[P-06]`, `[H-01]`–`[H-03]`). Cite failures by ID in reviews.
+- **Macrostructure documentation** — Execution Protocol now includes a step to add a comment to the root component documenting Register, Vibe Archetype, Layout Archetype, and Color Strategy chosen.
 
 ---
 
@@ -32,19 +43,31 @@ skill-web-design/
 
 ---
 
+## Operating modes
+
+| Mode | Trigger | What it does |
+| ---- | ------- | ------------ |
+| **Build** | (default) | Creates new UI with selected register, theme, and macrostructure |
+| **Audit** | "audit questo design", "score questo" | Scores existing code against design patterns. No edits. |
+| **Redesign** | "ridisegna", "cambia stile" | Preserves copy and IA, rebuilds visual fingerprint |
+| **Study** | "analizza questo sito", "estrai il DNA" | Extracts Design DNA from a URL or screenshot |
+
+---
+
 ## What it is for
 
-Use this skill when you already have a website structure or page layout and want Claude Code to improve the visual design.
+Use this skill when you want Claude Code to make strong visual design decisions, not just follow instructions.
 
 It is especially useful for:
 
-- Turning a basic layout into a polished interface
+- Creating brand landing pages and marketing surfaces that don't look AI-generated
+- Turning a basic layout into a polished, intentional interface
+- Auditing existing UI code for design pattern violations
+- Extracting the design DNA from an admired site to replicate its approach
 - Improving typography, spacing, hierarchy, and visual rhythm
-- Creating stronger color systems and better contrast
-- Making interfaces feel more intentional and less generic
+- Creating stronger color systems using OKLCH strategy
 - Adding motion, interaction details, and UI polish
-- Reviewing a design before shipping
-- Reducing generic AI-generated visual patterns
+- Reducing generic AI-generated visual patterns with a two-level slop test
 
 This skill is meant to work after the structure and UX planning stage. For website structure, content hierarchy, and UX flow, use [`skill-ui-ux-Libera`](https://github.com/liberastudio-mx/skill-ui-ux-Libera).
 
@@ -92,22 +115,29 @@ The `reference/` folder contains design knowledge documents covering key UI and 
 
 Use this repository as a Claude Code skill or as a design reference library.
 
-Example prompts:
-
+**Build mode (default):**
 ```text
-Use the skill-web-design skill to improve the visual design of this landing page.
+Use /design-libera to design this landing page.
 ```
 
+**Audit mode:**
+```text
+/design-libera — audit this component for design pattern violations
+```
+
+**Study mode:**
+```text
+/design-libera — analizza questo sito e dimmi cosa usare per replicarlo: https://example.com
+```
+
+**Redesign mode:**
+```text
+/design-libera — ridisegna questa pagina mantenendo il contenuto attuale
+```
+
+**Reference deep-dives:**
 ```text
 Read reference/color-and-contrast.md and improve the current color palette.
-```
-
-```text
-Review this UI using reference/polish.md and suggest final design improvements.
-```
-
-```text
-Use reference/typography.md to improve the type scale and text hierarchy.
 ```
 
 ```text
