@@ -18,6 +18,8 @@ The reference documents in `reference/` are substantially derived from the `impe
 
 ---
 
+See [CHANGELOG.md](CHANGELOG.md) for version history. Current version: **1.1.1**.
+
 ## What's new in v1.1.0
 
 - **Four operating modes** — Build (default), Audit, Redesign, Study. Each has its own protocol and output format.
@@ -108,6 +110,24 @@ The `reference/` folder contains design knowledge documents covering key UI and 
 | `audit.md` | Quality | Accessibility, performance, responsive checks |
 | `optimize.md` | Performance | UI performance diagnosis and fixes |
 | `personas.md` | Research | Persona frameworks for design context |
+
+---
+
+## Install
+
+Copy the skill file into your Claude Code commands directory:
+
+```bash
+# macOS / Linux
+cp SKILL.md ~/.claude/commands/design-libera.md
+```
+
+```powershell
+# Windows
+Copy-Item SKILL.md "$env:USERPROFILE\.claude\commands\design-libera.md"
+```
+
+Invoke with `/design-libera` in any Claude Code session. For the optional reference deep-dives, clone this repository to a stable location (LIBERA convention: `D:\dev\skill-web-design` on Windows, `~/dev/skill-web-design` on macOS/Linux).
 
 ---
 

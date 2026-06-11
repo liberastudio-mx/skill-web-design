@@ -1,5 +1,6 @@
 ---
 name: design-libera
+version: "1.1.1"
 description: "Visual and aesthetic design direction for web and UI. LIBERA Studio synthesis of impeccable design laws + high-end-visual-design pattern catalog. Self-contained for first-pass direction; optional deep-dive references if skill-web-design repository is available. Covers brand and product registers, OKLCH color strategy, typography, motion choreography, layout, and AI slop prevention at two levels. Modes: Build (default), Audit, Redesign, Study."
 ---
 
@@ -18,9 +19,9 @@ Identify your mode before proceeding. Default is **Build**.
 | Mode | Trigger phrases | What it does |
 | ---- | --------------- | ------------ |
 | **Build** | (default) | Creates new UI with selected register, theme, and macrostructure. Runs all gate checks. |
-| **Audit** | "audit questo design", "valuta questo UI", "cosa non va", "score questo" | Scores existing code or screenshot against design patterns. No edits made. |
-| **Redesign** | "ridisegna", "cambia stile", "stessa struttura diverso look", "preserva il contenuto" | Preserves copy and information architecture. Rebuilds visual fingerprint from scratch. |
-| **Study** | "analizza questo sito", "estrai il DNA", "voglio replicare questo stile", "cosa usa questo design" | Extracts design DNA from a URL or screenshot. Produces a portable design brief. |
+| **Audit** | "audit questo design", "valuta questo UI", "audita este diseño", "cosa non va", "score questo" | Scores existing code or screenshot against design patterns. No edits made. |
+| **Redesign** | "ridisegna", "rediseña", "rediseña", "cambia stile", "stessa struttura diverso look", "preserva il contenuto" | Preserves copy and information architecture. Rebuilds visual fingerprint from scratch. |
+| **Study** | "analizza questo sito", "analiza este sitio", "estrai il DNA", "voglio replicare questo stile", "cosa usa questo design" | Extracts design DNA from a URL or screenshot. Produces a portable design brief. |
 
 ---
 
@@ -368,7 +369,7 @@ Before finalizing any Brand design, check whether it overuses this skill's own d
 
 ## Study Mode
 
-**Trigger:** "analizza questo sito", "estrai il DNA di design", "voglio replicare questo stile", "cosa usa questo design", "study this"
+**Trigger:** "analizza questo sito", "analiza este sitio", "estrai il DNA di design", "voglio replicare questo stile", "cosa usa questo design", "study this"
 
 Analyze an admired design (URL or screenshot) and extract a portable design brief. Output is a structured summary ready to pass to the next Build session as a reference.
 
@@ -418,7 +419,7 @@ Analyze an admired design (URL or screenshot) and extract a portable design brie
 
 ## Audit Mode
 
-**Trigger:** "audit questo design", "valuta questo UI", "cosa non va", "score questo", "review this code design-wise"
+**Trigger:** "audit questo design", "valuta questo UI", "audita este diseño", "cosa non va", "score questo", "review this code design-wise"
 
 Score existing code or a screenshot against design patterns. **No edits made in Audit mode** — output is analysis only. For UX/accessibility audit use `/ui-ux-libera` instead; this mode covers visual design only.
 
@@ -518,8 +519,8 @@ Gate IDs allow citing specific failures in reviews (e.g. "failed G-04 and B-02")
 
 - `[B-01]` Font procedure followed — no fonts from reflex-reject list as first choice
 - `[B-02]` No aesthetic lanes from reflex-reject lanes
-- `[B-03]` Double-Bezel on major cards/containers (outer = frame, not second content container)
-- `[B-04]` Section padding minimum `py-24`
+- `[B-03]` Double-Bezel used selectively: primary feature container or hero media only, never on every card (outer = frame, not second content container; see Fingerprint Test)
+- `[B-04]` Section padding minimum `py-20` (per Spatial Rhythm), at least 3 different values across the page
 - `[B-05]` Motion uses `cubic-bezier(0.32, 0.72, 0, 1)` — no `ease-in-out`
 - `[B-06]` LIBERA Fingerprint Test passed — fewer than 3 defaults stacked
 - `[B-07]` Overall impression reads as designed with intent, not assembled from templates
@@ -545,7 +546,7 @@ Gate IDs allow citing specific failures in reviews (e.g. "failed G-04 and B-02")
 
 ## External References
 
-This skill is self-contained for first-pass visual direction. The `reference/` files in [skill-web-design](https://github.com/sayitlouderdev/skill-web-design) are optional deep-dives.
+This skill is self-contained for first-pass visual direction. The `reference/` files in [skill-web-design](https://github.com/liberastudio-mx/skill-web-design) are optional deep-dives.
 
 **If the repository is not available:** do not claim to have read these files. Continue with this document only.
 
@@ -565,9 +566,24 @@ This skill is self-contained for first-pass visual direction. The `reference/` f
 | Amplify a bland design | `bolder.md` |
 | Tone down an aggressive design | `quieter.md` |
 | Final quality pass | `polish.md` |
+| Make a design bolder/louder | `overdrive.md` |
+| Simplify without losing meaning | `distill.md` |
+| Micro-interactions, delight | `delight.md` |
+| Animation direction | `animate.md` |
+| Adding strategic color | `colorize.md` |
+| Typography improvement pass | `typeset.md` |
+| Heuristic UX scoring | `heuristics-scoring.md` |
+| Design critique methodology | `critique.md` |
+| First-run flows, activation | `onboard.md` |
+| Device/screen adaptation | `adapt.md` |
+| Copy clarity | `clarify.md` |
+| Errors, i18n, edge cases | `harden.md` |
+| A11y/perf/responsive audit | `audit.md` |
+| UI performance fixes | `optimize.md` |
+| Persona frameworks | `personas.md` |
 
 ---
 
 *LIBERA Studio synthesis — maggio 2026*
 *Fonti: impeccable (Apache 2.0) + high-end-visual-design*
-*Repository: https://github.com/sayitlouderdev/skill-web-design*
+*Repository: https://github.com/liberastudio-mx/skill-web-design*
